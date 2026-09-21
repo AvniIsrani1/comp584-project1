@@ -86,12 +86,111 @@
       /* Universal styles for links and stuff */
       a {
         color: #ffffff;
-        /* text-decoration: none; */
+        font-weight: bold;
+      }
+      /* for increased accessibility and interactivity, links should turn black on hover */
+      a:hover {
+        color: #000000;
+        text-decoration: none;
+      }
+      /* animation */
+      a.button {
+        transition: all 0.5s ease;
+      }
+      /* for increased accessibility and interactivity, buttons should change background color on hover */
+      a.button:hover {
+        background-color: #00310a !important;
+        box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+        transform: translateY(-10px); /* shift up */
       }
 
       /* Responsive styles */
       img {
         height: auto;
+      }
+
+      /* More animations */
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+          filter: hue-rotate(0deg);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+          filter: hue-rotate(360deg);
+        }
+      }
+      .fade1 {
+        animation: 1s 1 fade-in;
+      }
+      .fade2 {
+        animation: 2s 1 fade-in;
+      }
+
+      @keyframes slide-in {
+        from {
+          transform: translateX(100%);
+          filter: blur(15px);
+        }
+        to {
+          transform: translateX(0%);
+          filter: blur(0px);
+        }
+      }
+
+      .slide2 {
+        animation: 2s 1 slide-in;
+      }
+
+      /* Interactive */
+      input {
+        display: none; /* hide input */
+      }
+
+      label {
+        cursor: pointer; /* change cursor for label to show clickable */
+        color: #ffffff;
+        background-color: #007a19;
+      }
+
+      .panel {
+        display: none; /* hide panel */
+      }
+
+      /* show checked panels */
+      #panel1:checked ~ .panel1,
+      #panel2:checked ~ .panel2,
+      #panel3:checked ~ .panel3,
+      #panel4:checked ~ .panel4 {
+        display: block;
+      }
+      /* applies if browser's viewport is <= 600 px */
+      @media screen and (max-width: 600px) {
+        /* table width should be 100% for responsiveness (fluidness for small screens) */
+        .mobile {
+          width: 100% !important;
+        }
+
+        .block {
+          display: block !important;
+          width: 100% !important;
+        }
+
+        /* scale font sizes down for smaller screens */
+        h1 {
+          font-size: large !important;
+        }
+        h2 {
+          font-size: medium !important;
+        }
+        h3 {
+          font-size: small !important;
+        }
+        p {
+          font-size: 12px !important;
+        }
       }
     </style>
   </head>
@@ -107,14 +206,15 @@
       <tr>
         <td align="center">
           <!-- fixed table -->
-          <table border="0" cellpadding="0" cellspacing="0" width="600" role="presentation">
+          <!-- responsive for small screens via class mobile (targeted via css at top of file) -->
+          <table class="mobile" border="0" cellpadding="0" cellspacing="0" width="600" role="presentation">
             <!-- content -->
 
             <!-- LOGO -->
             <tr>
               <td align="center" style="padding: 20px">
                 <!-- display: block; max-width: 100%; min-width: 100px; width: 100%; height: auto -->
-                <img src="images/logo.png" alt="Green Thumb Logo" width="150" style="display: block; max-width: 100%; min-width: 100px; height: auto" />
+                <img class="fade1" src="images/logo.png" alt="Green Thumb Logo" width="150" style="display: block; max-width: 100%; min-width: 100px; height: auto" />
               </td>
             </tr>
 
@@ -133,6 +233,7 @@
                 <!-- responsiveness via style values -->
                 <!-- text alternatives (alt) for images -->
                 <img
+                  class="fade2"
                   src="images/hero.jpg"
                   alt="Fruits and Vegetables"
                   width="600"
@@ -146,7 +247,7 @@
             <tr>
               <td style="padding: 20px 5px 0 5px">
                 <!-- semantic/sectioning elements (headings) to enhance accessibility -->
-                <h2 style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Our Journey</h2>
+                <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Our Journey</h2>
 
                 <!-- paragraphs (details) -->
                 <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 14px; color: #007a19">
@@ -179,10 +280,111 @@
               </td>
             </tr>
 
+            <!-- Three Column -->
+            <tr>
+              <td>
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td>
+                      <!-- Left Column -->
+                      <!-- add responsiveness to multi-column layout via class="block" which has display block and width 100% -->
+                      <table class="block" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="33%">
+                        <tr>
+                          <td style="padding: 5px; line-height: 20px">
+                            <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Lorem Ipsum</h2>
+                            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 14px; color: #000000">
+                              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus
+                              leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit
+                              semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Middle Column -->
+                      <!-- add responsiveness to multi-column layout via class="block" which has display block and width 100% -->
+                      <table class="block" align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" width="33%">
+                        <tr>
+                          <td style="padding: 5px; line-height: 20px">
+                            <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Lorem Ipsum</h2>
+                            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 14px; color: #000000">
+                              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus
+                              leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit
+                              semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Right Column -->
+                      <!-- add responsiveness to multi-column layout via class="block" which has display block and width 100% -->
+                      <table class="block" align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" width="33%">
+                        <tr>
+                          <td style="padding: 5px; line-height: 20px">
+                            <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Lorem Ipsum</h2>
+                            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 14px; color: #000000">
+                              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus
+                              leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit
+                              semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- checked box technique to add some more interactivity -->
+            <!-- using buttons, labels, and divs -->
+            <tr>
+              <td align="center">
+                <input type="radio" name="panels" id="panel1" checked />
+                <input type="radio" name="panels" id="panel2" />
+                <input type="radio" name="panels" id="panel3" />
+                <input type="radio" name="panels" id="panel4" />
+
+                <label for="panel1" class="panel-label" style="border: 2px solid black; border-radius: 15px; display: inline-block; margin: 5px; padding: 10px"> Panel 1 </label>
+                <label for="panel2" class="panel-label" style="border: 2px solid black; border-radius: 15px; display: inline-block; margin: 5px; padding: 10px"> Panel 2 </label>
+                <label for="panel3" class="panel-label" style="border: 2px solid black; border-radius: 15px; display: inline-block; margin: 5px; padding: 10px"> Panel 3 </label>
+                <label for="panel4" class="panel-label" style="border: 2px solid black; border-radius: 15px; display: inline-block; margin: 5px; padding: 10px"> Panel 4 </label>
+
+                <div class="panel panel1" style="background-color: #c4f3cd; padding: 10px; margin: 20px 0">
+                  <p>
+                    Panel 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+                <div class="panel panel2" style="background-color: #c4f3cd; padding: 10px; margin: 20px 0">
+                  <p>
+                    Panel 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+                <div class="panel panel3" style="background-color: #c4f3cd; padding: 10px; margin: 20px 0">
+                  <p>
+                    Panel 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+                <div class="panel panel4" style="background-color: #c4f3cd; padding: 10px; margin: 20px 0">
+                  <p>
+                    Panel 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+              </td>
+            </tr>
+
             <tr>
               <td style="padding: 20px 5px 0 5px">
                 <!-- semantic/sectioning elements (headings) to enhance accessibility -->
-                <h2 style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Important Plant Care Steps</h2>
+                <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Important Plant Care Steps</h2>
 
                 <!-- paragraphs (details) -->
                 <!-- semantic/sectioning elements (strong) to enhance accessibility -->
@@ -240,6 +442,7 @@
                     <center style="color: #ffffff; font-family: sans-serif; font-size: 13px; font-weight: bold">Tempus</center>
                   </v:roundrect> <!
                 [endif]--><a
+                  class="button"
                   href="http://"
                   style="
                     background-color: #007a19;
@@ -260,6 +463,42 @@
                   "
                   >Tempus</a
                 >
+              </td>
+            </tr>
+
+            <!-- Two Column -->
+            <tr>
+              <td>
+                <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td>
+                      <!-- Left Column -->
+                      <!-- add responsiveness to multi-column layout via class="block" which has display block and width 100% -->
+                      <table class="block" align="left" border="0" cellpadding="0" cellspacing="0" role="presentation" width="48%">
+                        <tr>
+                          <td style="padding: 5px; line-height: 20px">
+                            <img src="images/tree.jpg" alt="Hands holding tree icon" width="100%" style="display: block; margin: 0 auto" />
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Right Column -->
+                      <!-- add responsiveness to multi-column layout via class="block" which has display block and width 100% -->
+                      <table class="block" align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" width="48%">
+                        <tr>
+                          <td style="padding: 5px; line-height: 20px">
+                            <h2 class="slide2" style="font-style: italic; font-weight: bold; font-size: large; color: #007a19">Lorem Ipsum</h2>
+                            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 14px; color: #000000">
+                              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus
+                              leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit
+                              semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
 
