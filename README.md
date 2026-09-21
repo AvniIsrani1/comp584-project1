@@ -1,1 +1,1 @@
-https://avniisrani1.github.io/comp584-hw3-ai/
+https://avniisrani1.github.io/comp584-project1/
